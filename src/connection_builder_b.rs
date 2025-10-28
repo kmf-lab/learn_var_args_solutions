@@ -13,6 +13,7 @@ pub struct Connection {
     pub address: String,
     pub port: u16,
     pub protocol: Protocol,
+    pub encryption: bool,
 }
 
 #[derive(Debug, Clone)]
@@ -20,6 +21,7 @@ pub struct ConnectionBuilder {
     pub address: String,
     pub port: Option<u16>,
     pub protocol: Protocol,
+    pub encryption: bool,
 }
 
 impl Default for ConnectionBuilder {
@@ -28,6 +30,7 @@ impl Default for ConnectionBuilder {
             address: "127.0.0.1".into(),
             port: None,
             protocol: Protocol::Udp,
+            encryption: false,
         }
     }
 }
@@ -55,12 +58,19 @@ impl ConnectionBuilder {
         new
     }
 
+    pub(crate) fn encryption(&self, encryption: bool) -> Self {
+        let mut new = self.clone();
+        new.encryption = encryption;
+        new
+    }
+
     /// Build the final `Connection`
     pub(crate) fn build(&self) -> Result<Connection, &'static str> {
         Ok(Connection {
             address: self.address.clone(),
             port: self.port.ok_or("port is required")?,
             protocol: self.protocol.clone(),
+            encryption: self.encryption,
         })
     }
 }

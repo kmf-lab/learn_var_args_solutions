@@ -76,6 +76,10 @@ impl ConnectionBuilder {
 }
 
 
+pub(crate) fn use_connection(c: &Connection) -> String {
+    format!("{}:{}", c.address, c.port)
+}
+
 
 
 

@@ -10,6 +10,7 @@ use std::fmt::Debug;
 
 /// The `Connectable` trait represents behavior shared across all connection types.
 /// Anything that can `describe()` itself and `connect()` can implement this trait.
+#[allow(dead_code)]
 pub trait Connectable: Debug {
     fn describe(&self) -> String;
     fn connect(&self);
@@ -20,6 +21,7 @@ pub trait Connectable: Debug {
 // ---------------------------------------------------------------------
 
 #[derive(Debug)]
+#[allow(dead_code)]
 pub struct TcpConnection {
     pub address: String,
     pub port: u16,
@@ -43,6 +45,7 @@ impl Connectable for TcpConnection {
 }
 
 #[derive(Debug)]
+#[allow(dead_code)]
 pub struct UdpConnection {
     pub address: String,
     pub port: u16,
@@ -59,6 +62,7 @@ impl Connectable for UdpConnection {
 }
 
 #[derive(Debug)]
+#[allow(dead_code)]
 pub struct LocalHostConnection {
     pub port: u16,
 }
@@ -87,12 +91,14 @@ impl Connectable for LocalHostConnection {
 // ---------------------------------------------------------------------
 
 #[derive(Debug)]
+#[allow(dead_code)]
 pub enum Connection {
     Tcp(Box<dyn Connectable>),
     Udp(Box<dyn Connectable>),
     Local(Box<dyn Connectable>),
 }
 
+#[allow(dead_code)]
 impl Connection {
     /// Return a string describing the connection (delegates to trait implementation)
     pub fn describe(&self) -> String {
@@ -131,19 +137,21 @@ impl Connection {
 // ---------------------------------------------------------------------
 
 /// Demonstrates direct use of the enum interface (pattern matching)
+#[allow(dead_code)]
 pub fn use_enum_connection(conn: &Connection) {
-    println!("→ [enum] {}", conn.describe());
+    println!("[enum] {}", conn.describe());
     conn.connect();
     match conn {
-        Connection::Tcp(_) => println!("   ↳ handled as TCP variant\n"),
-        Connection::Udp(_) => println!("   ↳ handled as UDP variant\n"),
-        Connection::Local(_) => println!("   ↳ handled as Local variant\n"),
+        Connection::Tcp(_) => println!("   handled as TCP variant\n"),
+        Connection::Udp(_) => println!("   handled as UDP variant\n"),
+        Connection::Local(_) => println!("   handled as Local variant\n"),
     }
 }
 
 /// Demonstrates use through a trait object reference (`&dyn Connectable`)
+#[allow(dead_code)]
 pub fn use_connection_trait(conn: &dyn Connectable) {
-    println!("→ [trait] {}", conn.describe());
+    println!("[trait] {}", conn.describe());
     conn.connect();
     println!();
 }

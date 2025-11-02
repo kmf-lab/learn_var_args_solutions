@@ -13,6 +13,7 @@ pub trait Connectable: std::fmt::Debug {
 // ---------------------------------------------------------------------
 
 #[derive(Debug)]
+#[allow(dead_code)]
 pub struct TcpConnection {
     pub address: String,
     pub port: u16,
@@ -36,6 +37,7 @@ impl Connectable for TcpConnection {
 }
 
 #[derive(Debug)]
+#[allow(dead_code)]
 pub struct UdpConnection {
     pub address: String,
     pub port: u16,
@@ -52,6 +54,7 @@ impl Connectable for UdpConnection {
 }
 
 #[derive(Debug)]
+#[allow(dead_code)]
 pub struct LocalHostConnection {
     pub port: u16,
 }
@@ -72,15 +75,17 @@ impl Connectable for LocalHostConnection {
 
 /// 🧩 Static dispatch: Compile-time monomorphization of `Connectable`
 /// The compiler generates specialized code for each type of T.
+#[allow(dead_code)]
 pub fn use_connection_generic<T: Connectable>(conn: &T) {
-    println!("→ [generic] {}", conn.describe());
+    println!("[generic] {}", conn.describe());
     conn.connect();
     println!();
 }
 
 /// 🌀 Dynamic dispatch: Single runtime entry point for Connectable trait objects
+#[allow(dead_code)]
 pub fn use_connection_dyn(conn: &dyn Connectable) {
-    println!("→ [dyn] {}", conn.describe());
+    println!("[dyn] {}", conn.describe());
     conn.connect();
     println!();
 }

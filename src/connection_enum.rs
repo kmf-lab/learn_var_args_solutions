@@ -23,6 +23,7 @@ pub enum Connection {
     },
 }
 
+#[allow(dead_code)]
 impl Connection {
     pub fn connect(&self) {
         match self {
@@ -68,13 +69,14 @@ impl Connection {
     }
 }
 
+#[allow(dead_code)]
 pub fn use_connection(conn: &Connection) {
-     println!("→ Using enum connection: {}", conn.describe());
+     println!("Using enum connection: {}", conn.describe());
      conn.connect(); 
      match conn {   //we can match on this for specific behavior.
          Connection::Tcp { .. } => {} //by port matching??
          Connection::Udp { .. } => {}
          Connection::LocalHost { .. } => {}
      }
-     println!("← Done.\n");
+     println!("\n");
  }

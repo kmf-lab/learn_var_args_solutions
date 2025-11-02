@@ -96,6 +96,11 @@ macro_rules! connect {
     };
 }
 
+#[allow(dead_code)]
+pub(crate) fn use_connection(conn: &Connection) {
+    println!("{conn:?}");
+}
+
 //  hybrid macro + builder
 // let a = connect!("10.0.0.1", 8080).unwrap();
 // let b = connect!("10.0.0.1", 443, true).unwrap();

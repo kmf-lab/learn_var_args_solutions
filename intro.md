@@ -33,7 +33,7 @@ Throughout the talk, we’ll refactor the same conceptual “connection” in se
 
 ---
 
-## 3️⃣ The Plan — Four Patterns, One Progression
+## 3️⃣ The Plan — Four Patterns, + Combos
 
 | Step | Pattern | What We Show |
 |------|----------|--------------|
@@ -79,7 +79,3 @@ By the end of this session you’ll be able to:
 > “Rust doesn’t give you variadic functions —  
 > it gives you *varied types* and *precise composition.*  
 > What we lose in syntactic shortcuts, we gain in **clarity, safety, and clean design evolution.**”
-
----
-
-*(Next file: `connection_enum.rs` — let’s start with the simplest and most explicit solution: enumerations.)*
